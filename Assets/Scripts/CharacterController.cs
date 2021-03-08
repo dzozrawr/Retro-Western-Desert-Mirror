@@ -6,7 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     private const int extraJumpValue = 1;
 
-    public float charSpeed = 250;
+    public float charSpeed = 230f;
     public float jumpForce= 7f;
     
 

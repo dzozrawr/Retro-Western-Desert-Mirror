@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
 {
-    public float fireRate = 0f;
+    public float fireRate = 3f;
     public float damage = 10f;
-    public LayerMask whatToHit;
 
-    public GameObject bulletPrefab=null;
+    public GameObject bulletPrefab = null;
 
-    public float bulletSpeed=250f;
+   // public float bulletSpeed = 270f;
 
     float timeToFire = 0;
 
@@ -41,7 +40,7 @@ public class ShootingScript : MonoBehaviour
                 Shoot();
             }
         }
-        else if (Input.GetButtonDown("Fire1")&& Time.time>timeToFire)
+        else if (Input.GetButtonDown("Fire1") && Time.time > timeToFire)
         {
             timeToFire = Time.time + 1 / fireRate;
             Shoot();
@@ -50,8 +49,18 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet= Instantiate(bulletPrefab,firePoint.position,firePoint.rotation);
+        GameObject bullet;
+        Quaternion bulletRotation;
+        bulletRotation = firePoint.rotation;
 
-        bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(bulletSpeed, 0f));
+        if (transform.localScale.x < 0)
+        {
+            Vector3 rot = bulletRotation.eulerAngles;
+            rot = new Vector3(rot.x, rot.y + 180, rot.z);
+            bulletRotation = Quaternion.Euler(rot);
+        }
+
+        bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
+        SoundManagerScript.PlaySound("gunShot");
     }
 }

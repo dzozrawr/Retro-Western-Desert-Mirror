@@ -64,8 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\EnemyMirrorScript.cs" />
+    <Compile Include="Assets\Scripts\ParallaxScript.cs" />
     <Compile Include="Assets\Scripts\ShootingScript.cs" />
+    <Compile Include="Assets\Scripts\SoundManagerScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/users/admin/Retro Western Desert Mirrorr/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
