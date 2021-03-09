@@ -69,8 +69,13 @@
     <Compile Include="Assets\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\DamagingObject.cs" />
     <Compile Include="Assets\Scripts\EnemyMirrorScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyShootingScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyWithGun.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\HealthObject.cs" />
     <Compile Include="Assets\Scripts\ParallaxScript.cs" />
+    <Compile Include="Assets\Scripts\PowerUpScript.cs" />
+    <Compile Include="Assets\Scripts\RifleBulletScript.cs" />
     <Compile Include="Assets\Scripts\ShootingScript.cs" />
     <Compile Include="Assets\Scripts\SoundManagerScript.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

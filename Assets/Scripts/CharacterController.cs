@@ -23,20 +23,32 @@ public class CharacterController : HealthObject
     public Animator animator;
 
     float horizontalMove = 0f;
-    
 
-    private Material matRed;
-    private Material matDefault;
-    SpriteRenderer sr;
+
+
+    public int maxHp = 100;
+
+    public HealthBar healthBar;
+
+    public int collisionDmg = 5;
+
+    const float colInvincibilityTimeVal = 0.75f;
+    float colInvincibilityTime = 0f;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        hp = 20;
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
+        hp = maxHp;
+        healthBar.SetMaxHealth(maxHp);
 
-        sr = GetComponent<SpriteRenderer>();
-        matRed = Resources.Load("RedFlash", typeof(Material)) as Material;
+        rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.Log("Rigid body is null in start()");
+        }
+
+        sr = GetComponent<SpriteRenderer>();        
         matDefault = sr.material;
     }
 
@@ -57,11 +69,19 @@ public class CharacterController : HealthObject
         {
             rb.velocity = Vector2.up * jumpForce;
             animator.SetBool("isJumping", true);
+            SoundManagerScript.PlaySound("jumpSound");
         }
         else if ((Input.GetButtonDown("Jump") && extraJumps > 0))
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
+            SoundManagerScript.PlaySound("jumpSound");
+        }
+
+        //Collision Invincibility Time
+        if (colInvincibilityTime > 0)
+        {
+            colInvincibilityTime -= Time.deltaTime;
         }
     }
 
@@ -92,18 +112,42 @@ public class CharacterController : HealthObject
         transform.localScale = scaler;
     }
 
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+         //   Debug.Log("OnCollisionStay2D");
+            if (colInvincibilityTime <= 0)
+            {
+                receiveDmg(collisionDmg);
+                colInvincibilityTime = colInvincibilityTimeVal;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+      //  if (collision.gameObject.CompareTag("Enemy")) Debug.Log("OnCollisionExit2D");
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
+       // if (col.gameObject.CompareTag("Enemy")) Debug.Log("OnCollisionEnter2D"); 
         if (col.gameObject.GetComponent<DamagingObject>() != null)
         {
             receiveDmg(col.gameObject.GetComponent<DamagingObject>().getDamage());
         }
+
+
     }
 
     public override void receiveDmg(float dmg)
     {
         hp -= dmg;
+        healthBar.SetHealth((int)hp);
         sr.material = matRed;
+        SoundManagerScript.PlaySound("playerHurtSound");
         if (hp <= 0) Destroy(gameObject);
         else
         {
@@ -111,8 +155,5 @@ public class CharacterController : HealthObject
         }
     }
 
-    void ResetMaterial()
-    {
-        sr.material = matDefault;
-    }
+
 }

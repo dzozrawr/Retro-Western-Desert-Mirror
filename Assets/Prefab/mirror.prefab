@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84a52abbb6c6ea4a99daa589ff35ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
   movementSpeed: 0.8
   bulletPrefab: {fileID: 8640963508917798915, guid: 511541668bc5a19468014e6a094d0578,
     type: 3}
@@ -137,6 +136,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.18617195, y: 0.033849478}
-  m_Size: {x: 0.15992439, y: 1.2325425}
+  m_Offset: {x: -0.18617195, y: 0.00032657385}
+  m_Size: {x: 0.15992439, y: 1.2995883}
   m_Direction: 0

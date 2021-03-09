@@ -12,18 +12,18 @@ public class EnemyMirrorScript : HealthObject
     private float standingTime = standingTimeValue;
     private bool facingLeft = true;
 
-    private Material matRed;
-    private Material matDefault;
-    SpriteRenderer sr;
+
 
     public GameObject bulletPrefab = null;
 
+    
+
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        hp = 10f;
+        base.Start();
+        hp = 25f;
         sr = GetComponent<SpriteRenderer>();
-        matRed = Resources.Load("RedFlash", typeof(Material)) as Material;
         matDefault = sr.material;
     }
 
@@ -68,6 +68,8 @@ public class EnemyMirrorScript : HealthObject
                 }
             }
         }
+
+
     }
 
     void flip()
@@ -78,22 +80,5 @@ public class EnemyMirrorScript : HealthObject
         facingLeft = !facingLeft;
     }
 
-    public override void receiveDmg(float dmg)
-    {
-        hp -= dmg;
-        sr.material = matRed;
-        if (hp <= 0) Destroy(gameObject);
-        else
-        {
-            Invoke("ResetMaterial", .1f);
-        }
-    }
-    // if (facingLeft && col.transform.position.x < transform.position.x) Debug.Log("Reflect!");
-    // else if (!facingLeft && col.transform.position.x > transform.position.x) Debug.Log("Reflect!");
 
-
-    void ResetMaterial()
-    {
-        sr.material = matDefault;
-    }
 }

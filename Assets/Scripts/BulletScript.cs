@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BulletScript : DamagingObject
 {
-    float lifeTimeInSec = 2f;
-    float timeOfDeath;
+    protected float lifeTimeInSec = 2f;
+    protected float timeOfDeath;
     public float bulletSpeed = 7f;
     
    // public LayerMask notToHit;
@@ -18,7 +18,7 @@ public class BulletScript : DamagingObject
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         transform.Translate(Vector3.right*Time.deltaTime* bulletSpeed);
         if(Time.time>= timeOfDeath)
@@ -26,7 +26,7 @@ public class BulletScript : DamagingObject
             Destroy(gameObject);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Enemy"))
         {
