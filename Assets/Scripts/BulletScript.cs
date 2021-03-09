@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : DamagingObject
 {
     float lifeTimeInSec = 2f;
     float timeOfDeath;
     public float bulletSpeed = 7f;
-    public float dmg = 5f;
+    
    // public LayerMask notToHit;
     // Start is called before the first frame update
     void Start()
     {
+        dmg = 5f;
         timeOfDeath = Time.time + lifeTimeInSec;
 
     }
@@ -27,12 +28,16 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<EnemyMirrorScript>()!=null)
+        if (!collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyMirrorScript>().receiveDmg(dmg);
-        }
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }//else if?        
     }
 
 
+
+   // public void refreshLife()
+   // {
+
+  //  }
 }

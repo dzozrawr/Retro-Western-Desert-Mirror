@@ -67,7 +67,9 @@
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\DamagingObject.cs" />
     <Compile Include="Assets\Scripts\EnemyMirrorScript.cs" />
+    <Compile Include="Assets\Scripts\HealthObject.cs" />
     <Compile Include="Assets\Scripts\ParallaxScript.cs" />
     <Compile Include="Assets\Scripts\ShootingScript.cs" />
     <Compile Include="Assets\Scripts\SoundManagerScript.cs" />

@@ -49,7 +49,7 @@ public class ShootingScript : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet;
+
         Quaternion bulletRotation;
         bulletRotation = firePoint.rotation;
 
@@ -60,7 +60,7 @@ public class ShootingScript : MonoBehaviour
             bulletRotation = Quaternion.Euler(rot);
         }
 
-        bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
+        Instantiate(bulletPrefab, firePoint.position, bulletRotation);
         SoundManagerScript.PlaySound("gunShot");
     }
 }

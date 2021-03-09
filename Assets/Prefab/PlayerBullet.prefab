@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5036075216193543061}
   - component: {fileID: 50911906399261016}
   - component: {fileID: 114855802970163368}
-  - component: {fileID: 61953825284934568}
+  - component: {fileID: 5673948159294720773}
   m_Layer: 10
   m_Name: PlayerBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,8 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 7
---- !u!61 &61953825284934568
-BoxCollider2D:
+  dmg: 5
+--- !u!70 &5673948159294720773
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,16 +130,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04417491, y: -0.015591115}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.3125}
-    newSize: {x: 0.16, y: 0.1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2610755, y: 0.18777603}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.029882735, y: -0.018189808}
+  m_Size: {x: 0.2935048, y: 0.19582349}
+  m_Direction: 1

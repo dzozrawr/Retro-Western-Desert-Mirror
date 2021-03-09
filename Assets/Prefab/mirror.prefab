@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8604208122068684359}
   - component: {fileID: 5212947535728114970}
   - component: {fileID: 1145225607946820219}
-  - component: {fileID: 2190374898888246337}
   - component: {fileID: 3087920499544598812}
+  - component: {fileID: 8755440873819788713}
   m_Layer: 0
   m_Name: mirror
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.07193002, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -106,20 +106,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48579875, y: 1.2301295}
+  m_Size: {x: 0.34193867, y: 1.2301295}
   m_EdgeRadius: 0
---- !u!114 &2190374898888246337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294264545240267026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ff3b10a67db034da32dff2fe8d2464, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3087920499544598812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +120,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84a52abbb6c6ea4a99daa589ff35ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 10
+  movementSpeed: 0.8
+  bulletPrefab: {fileID: 8640963508917798915, guid: 511541668bc5a19468014e6a094d0578,
+    type: 3}
+--- !u!70 &8755440873819788713
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294264545240267026}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.18617195, y: 0.033849478}
+  m_Size: {x: 0.15992439, y: 1.2325425}
+  m_Direction: 0
