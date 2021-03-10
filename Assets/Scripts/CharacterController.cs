@@ -15,7 +15,7 @@ public class CharacterController : HealthObject
 
     private bool isGrounded;
     public Transform groundCheck;
-    public float checkRadius = 0.01f;
+    public float checkRadius = 0.1f;
     public LayerMask whatIsGround;
 
     public int extraJumps = extraJumpValue;
@@ -35,6 +35,10 @@ public class CharacterController : HealthObject
     const float colInvincibilityTimeVal = 0.75f;
     float colInvincibilityTime = 0f;
 
+    float deathHeight = -10;
+
+    private GameObject gameController;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -50,6 +54,8 @@ public class CharacterController : HealthObject
 
         sr = GetComponent<SpriteRenderer>();        
         matDefault = sr.material;
+
+        gameController= GameObject.FindGameObjectWithTag("GameController"); 
     }
 
     void Update()
@@ -82,6 +88,13 @@ public class CharacterController : HealthObject
         if (colInvincibilityTime > 0)
         {
             colInvincibilityTime -= Time.deltaTime;
+        }
+
+        //checking death height
+        if (transform.position.y < deathHeight)
+        {
+            gameController.GetComponent<GameController>().GameOver();
+            Destroy(gameObject);
         }
     }
 
@@ -148,11 +161,20 @@ public class CharacterController : HealthObject
         healthBar.SetHealth((int)hp);
         sr.material = matRed;
         SoundManagerScript.PlaySound("playerHurtSound");
-        if (hp <= 0) Destroy(gameObject);
+        if (hp <= 0) { 
+            gameController.GetComponent<GameController>().GameOver();
+            Destroy(gameObject); 
+        }
         else
         {
             Invoke("ResetMaterial", .1f);
         }
+    }
+
+    public void receiveHp(float addedHp)
+    {        
+        if ((hp+ addedHp) > maxHp) hp = maxHp; else hp += addedHp;
+        healthBar.SetHealth((int)hp);
     }
 
 

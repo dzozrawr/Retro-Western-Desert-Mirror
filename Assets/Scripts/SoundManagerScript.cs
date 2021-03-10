@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManagerScript : MonoBehaviour
 {
 
-    public static AudioClip gunShot,rifleShot,jumpSound,playerHurtSound, threeBulletPowUpSound;
+    public static AudioClip gunShot,rifleShot,jumpSound,playerHurtSound, threeBulletPowUpSound, healthPackSound, backgroundMusic;
     static AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
@@ -15,8 +15,15 @@ public class SoundManagerScript : MonoBehaviour
         jumpSound= Resources.Load<AudioClip>("jumpSound");
         playerHurtSound= Resources.Load<AudioClip>("playerHurtSound");
         threeBulletPowUpSound = Resources.Load<AudioClip>("threeBulletPowUpSound");
+        healthPackSound = Resources.Load<AudioClip>("healthPackSound");
+        backgroundMusic= Resources.Load<AudioClip>("backgroundMusic");
+
 
         audioSrc = GetComponent<AudioSource>();
+
+        audioSrc.loop = true;
+        audioSrc.clip = backgroundMusic;
+        audioSrc.Play();
     }
 
     // Update is called once per frame
@@ -43,6 +50,9 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case "threeBulletPowUpSound":
                 audioSrc.PlayOneShot(threeBulletPowUpSound);
+                break;
+            case "healthPackSound":
+                audioSrc.PlayOneShot(healthPackSound);
                 break;
         }
     }

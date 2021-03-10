@@ -10,9 +10,14 @@ public abstract class HealthObject : MonoBehaviour  //also contains redFlash ani
     protected Material matDefault=null;
     protected SpriteRenderer sr=null;
 
+    private static int enemyN=0;
+
     public virtual void Start()
     {
         matRed = Resources.Load("RedFlash", typeof(Material)) as Material;
+        if (gameObject.CompareTag("Enemy")) {
+            enemyN++;            
+        }
     }
 
     public virtual void receiveDmg(float dmg)
@@ -31,4 +36,15 @@ public abstract class HealthObject : MonoBehaviour  //also contains redFlash ani
         sr.material = matDefault;
     }
 
+    private void OnDestroy()
+    {
+        if (gameObject.CompareTag("Enemy"))
+        {
+            enemyN--;
+            if (enemyN <= 0)
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().Victory();
+            }
+        }
+    }
 }
